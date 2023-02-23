@@ -10,7 +10,7 @@
 </ul>
 {% endif %}
 
-
+{% if page == 'login' %}
 <div>
     <form method="POST" action="">
         {% csrf_token %}
@@ -23,6 +23,21 @@
         <br>
         <input type="submit" value="Login">
     </form>
+    <p>Ainda não se cadastrou?</p>
+    <a href="{% url 'register' %}">Se cadastrar</a>
 </div>
+
+{% else %}
+
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Registrar">
+    </form>
+    <p>Já se cadastrou?</p>
+    <a href="{% url 'login-pagina' %}">Fazer login</a>
+</div>
+{% endif %}
 
 {% endblock content %}
